@@ -19,8 +19,8 @@ export class SteamAuthStrategy extends PassportStrategy(
     //   fetchUserProfile: false,
     // });
     super({
-      returnUrl: 'http://localhost:3300/auth/steam/return',
-      realm: 'http://localhost:3300/',
+      returnUrl: `${config.getOrThrow<string>('BACKEND_URL')}/auth/steam/return`,
+      realm: `${config.getOrThrow<string>('BACKEND_URL')}/`,
       fetchUserProfile: false,
     });
   }
