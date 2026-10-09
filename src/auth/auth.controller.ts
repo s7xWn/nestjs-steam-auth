@@ -33,9 +33,16 @@ export class AuthController {
   @Get('steam/return')
   @UseGuards(AuthGuard('steam'))
   steamReturn(@Req() req: Request, @Res() res: Response) {
-    req.session.save((error) => {
+    const user = req.user;
+
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    req.logIn(user, (error) => {
       if (error) {
-        return res.status(500).send('Failed to save session');
+        console.error('[Steam logIn error]', error);
+        return res.status(500).send('Login failed');
       }
 
       return res.redirect(this.config.getOrThrow<string>('FRONTEND_URL'));
