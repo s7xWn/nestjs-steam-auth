@@ -31,10 +31,6 @@ export class UsersController {
 
     try {
       response = await fetch(url, {
-        headers: {
-          Accept: 'application/json',
-          'User-Agent': 'Mozilla/5.0',
-        },
         signal: AbortSignal.timeout(10000),
       });
     } catch (error) {
