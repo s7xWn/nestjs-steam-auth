@@ -24,9 +24,7 @@ export class UsersController {
     const url = new URL(
       `https://steamcommunity.com/inventory/${req.user.steamId}/730/2`,
     );
-    url.searchParams.set('l', 'english');
-    url.searchParams.set('count', '10');
-    url.searchParams.set('start_assetid', '54016575013');
+
     let response: Response;
 
     try {
